@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import getConfig from '../../utils/getConfig';
 import DevTools from './components/DevTools';
 import { setPreviousPath } from '../IDE/actions/ide';
@@ -14,51 +14,45 @@ function hideCookieConsent(pathname) {
   return false;
 }
 
-class App extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = { isMounted: false };
-  }
+const App = ({ children, location }) => {
+  const [isMounted, setIsMounted] = useState(false);
 
-  componentDidMount() {
-    this.setState({ isMounted: true }); // eslint-disable-line react/no-did-mount-set-state
-    document.body.className = this.props.theme;
-  }
+  const theme = useSelector((state) => state.preferences.theme || 'light');
 
-  componentWillReceiveProps(nextProps) {
-    const locationWillChange = nextProps.location !== this.props.location;
+  const language = useSelector((state) => state.preferences.language);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => setIsMounted(true), []);
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  useEffect(() => {
     const shouldSkipRemembering =
-      nextProps.location.state &&
-      nextProps.location.state.skipSavingPath === true;
+      location.state && location.state.skipSavingPath === true;
 
-    if (locationWillChange && !shouldSkipRemembering) {
-      this.props.setPreviousPath(this.props.location.pathname);
+    if (isMounted && !shouldSkipRemembering) {
+      dispatch(setPreviousPath(location.pathname));
     }
+  }, [location]);
 
-    if (this.props.language !== nextProps.language) {
-      this.props.setLanguage(nextProps.language, { persistPreference: false });
-    }
-  }
+  // TODO: `language` comes from redux, so why does it need to be sent back to Redux? - Linda 7/18/2022
+  useEffect(() => {
+    dispatch(setLanguage(language, { persistPreference: false }));
+  }, [language]);
 
-  componentDidUpdate(prevProps) {
-    if (this.props.theme !== prevProps.theme) {
-      document.body.className = this.props.theme;
-    }
-  }
-
-  render() {
-    const hide = hideCookieConsent(this.props.location.pathname);
-    return (
-      <div className="app">
-        <CookieConsent hide={hide} />
-        {this.state.isMounted &&
-          !window.devToolsExtension &&
-          getConfig('NODE_ENV') === 'development' && <DevTools />}
-        {this.props.children}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="app">
+      <CookieConsent hide={hideCookieConsent(location.pathname)} />
+      {isMounted &&
+        !window.devToolsExtension &&
+        getConfig('NODE_ENV') === 'development' && <DevTools />}
+      {children}
+    </div>
+  );
+};
 
 App.propTypes = {
   children: PropTypes.element,
@@ -67,24 +61,11 @@ App.propTypes = {
     state: PropTypes.shape({
       skipSavingPath: PropTypes.bool
     })
-  }).isRequired,
-  setPreviousPath: PropTypes.func.isRequired,
-  setLanguage: PropTypes.func.isRequired,
-  language: PropTypes.string,
-  theme: PropTypes.string
+  }).isRequired
 };
 
 App.defaultProps = {
-  children: null,
-  language: null,
-  theme: 'light'
+  children: null
 };
 
-const mapStateToProps = (state) => ({
-  theme: state.preferences.theme,
-  language: state.preferences.language
-});
-
-const mapDispatchToProps = { setPreviousPath, setLanguage };
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
