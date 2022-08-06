@@ -1,61 +1,53 @@
 import { createSelector } from 'reselect';
-import differenceInMilliseconds from 'date-fns/differenceInMilliseconds';
 import find from 'lodash/find';
 import orderBy from 'lodash/orderBy';
 import { DIRECTION } from '../actions/sorting';
 
 const getCollections = (state) => state.collections;
-const getField = (state) => state.sorting.field;
-const getDirection = (state) => state.sorting.direction;
+export const getField = (state) => state.sorting.field;
+export const getDirection = (state) => state.sorting.direction;
 const getSearchTerm = (state) => state.search.collectionSearchTerm;
+
+// Can filter collections, sketches, or any object with a `name` property.
+export function filterByName(array, search) {
+  if (search) {
+    return array.filter((object) =>
+      object.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }
+  return array;
+}
 
 const getFilteredCollections = createSelector(
   getCollections,
   getSearchTerm,
-  (collections, search) => {
-    if (search) {
-      const searchStrings = collections.map((collection) => {
-        const smallCollection = {
-          name: collection.name
-        };
-        return {
-          ...collection,
-          searchString: Object.values(smallCollection).join(' ').toLowerCase()
-        };
-      });
-      return searchStrings.filter((collection) =>
-        collection.searchString.includes(search.toLowerCase())
-      );
-    }
-    return collections;
-  }
+  filterByName
 );
+
+function getIteratee(field) {
+  switch (field) {
+    case 'name':
+      return (object) => object.name.toLowerCase();
+    case 'numItems':
+      return 'items.length';
+    default:
+      return field;
+  }
+}
+
+export function sortItems(array, field, direction) {
+  return orderBy(
+    array,
+    getIteratee(field),
+    direction === DIRECTION.DESC ? 'desc' : 'asc'
+  );
+}
 
 const getSortedCollections = createSelector(
   getFilteredCollections,
   getField,
   getDirection,
-  (collections, field, direction) => {
-    if (field === 'name') {
-      if (direction === DIRECTION.DESC) {
-        return orderBy(collections, 'name', 'desc');
-      }
-      return orderBy(collections, 'name', 'asc');
-    } else if (field === 'numItems') {
-      if (direction === DIRECTION.DESC) {
-        return orderBy(collections, 'items.length', 'desc');
-      }
-      return orderBy(collections, 'items.length', 'asc');
-    }
-    const sortedCollections = [...collections].sort((a, b) => {
-      const result =
-        direction === DIRECTION.ASC
-          ? differenceInMilliseconds(new Date(a[field]), new Date(b[field]))
-          : differenceInMilliseconds(new Date(b[field]), new Date(a[field]));
-      return result;
-    });
-    return sortedCollections;
-  }
+  sortItems
 );
 
 export function getCollection(state, id) {
