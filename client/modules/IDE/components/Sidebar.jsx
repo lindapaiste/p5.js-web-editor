@@ -9,19 +9,30 @@ import {
   openProjectOptions,
   openUploadFileModal
 } from '../actions/ide';
+import { getAuthenticated, selectCanEditSketch } from '../selectors/users';
 import { selectRootFile } from '../selectors/files';
-import { getSketchOwner } from '../selectors/users';
 
 import ConnectedFileNode from './FileNode';
 
 import DownArrowIcon from '../../../images/down-filled-triangle.svg';
 
-export default function Sidebar() {
+// TODO: use a generic Dropdown UI component
+
+export default function SideBar() {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
-
   const [isFocused, setIsFocused] = useState(false);
+
+  const rootFile = useSelector(selectRootFile);
+  const projectOptionsVisible = useSelector(
+    (state) => state.ide.projectOptionsVisible
+  );
+  const isExpanded = useSelector((state) => state.ide.sidebarIsExpanded);
+  const canEditProject = useSelector(selectCanEditSketch);
+  const isAuthenticated = useSelector(getAuthenticated);
+
+  const toggleRef = useRef(null);
 
   const onBlurComponent = () => {
     setIsFocused(false);
@@ -34,14 +45,6 @@ export default function Sidebar() {
 
   const onFocusComponent = () => setIsFocused(true);
 
-  const rootFile = useSelector(selectRootFile);
-
-  const projectOptionsVisible = useSelector(
-    (state) => state.ide.projectOptionsVisible
-  );
-
-  const toggleRef = useRef(null);
-
   const toggleProjectOptions = (e) => {
     e.preventDefault();
     if (projectOptionsVisible) {
@@ -51,13 +54,6 @@ export default function Sidebar() {
       dispatch(openProjectOptions());
     }
   };
-
-  const user = useSelector((state) => state.user);
-  const owner = useSelector(getSketchOwner);
-
-  const canEditProject = !owner || (user.authenticated && owner.id === user.id);
-
-  const isExpanded = useSelector((state) => state.ide.sidebarIsExpanded);
 
   const sidebarClass = classNames({
     sidebar: true,
@@ -111,7 +107,7 @@ export default function Sidebar() {
                 {t('Sidebar.AddFile')}
               </button>
             </li>
-            {user.authenticated && (
+            {isAuthenticated && (
               <li>
                 <button
                   aria-label={t('Sidebar.UploadFileARIA')}
