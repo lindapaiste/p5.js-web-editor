@@ -589,44 +589,42 @@ class Nav extends React.PureComponent {
 
   renderLanguageMenu(navDropdownState) {
     return (
-      <React.Fragment>
-        <li className={navDropdownState.lang}>
-          <button
-            onClick={this.toggleDropdownForLang}
-            onBlur={this.handleBlur}
-            onFocus={this.clearHideTimeout}
-            title="Language"
-            onMouseOver={() => {
-              if (this.state.dropdownOpen !== 'none') {
-                this.setDropdown('lang');
-              }
-            }}
-          >
-            <span className="nav__item-header">
-              {languageKeyToLabel(this.props.language)}
-            </span>
-            <TriangleIcon
-              className="nav__item-header-triangle"
-              focusable="false"
-              aria-hidden="true"
-            />
-          </button>
-          <ul className="nav__dropdown">
-            {sortBy(availableLanguages).map((key) => (
-              <li className="nav__dropdown-item" key={key}>
-                <button
-                  onFocus={this.handleFocusForLang}
-                  onBlur={this.handleBlur}
-                  value={key}
-                  onClick={this.handleLangSelection}
-                >
-                  {languageKeyToLabel(key)}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </li>
-      </React.Fragment>
+      <li className={navDropdownState.lang}>
+        <button
+          onClick={this.toggleDropdownForLang}
+          onBlur={this.handleBlur}
+          onFocus={this.clearHideTimeout}
+          title="Language"
+          onMouseOver={() => {
+            if (this.state.dropdownOpen !== 'none') {
+              this.setDropdown('lang');
+            }
+          }}
+        >
+          <span className="nav__item-header">
+            {languageKeyToLabel(this.props.language)}
+          </span>
+          <TriangleIcon
+            className="nav__item-header-triangle"
+            focusable="false"
+            aria-hidden="true"
+          />
+        </button>
+        <ul className="nav__dropdown">
+          {sortBy(availableLanguages).map((key) => (
+            <li className="nav__dropdown-item" key={key}>
+              <button
+                onFocus={this.handleFocusForLang}
+                onBlur={this.handleBlur}
+                value={key}
+                onClick={this.handleLangSelection}
+              >
+                {languageKeyToLabel(key)}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </li>
     );
   }
 

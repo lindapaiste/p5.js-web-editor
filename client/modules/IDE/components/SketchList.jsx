@@ -294,24 +294,22 @@ class SketchListRowBase extends React.Component {
     );
 
     return (
-      <React.Fragment>
-        <tr
-          className="sketches-table__row"
-          key={sketch.id}
-          onClick={this.handleRowClick}
-        >
-          <th scope="row">{name}</th>
-          <td>
-            {mobile && 'Created: '}
-            {formatDateCell(sketch.createdAt, mobile)}
-          </td>
-          <td>
-            {mobile && 'Updated: '}
-            {formatDateCell(sketch.updatedAt, mobile)}
-          </td>
-          {this.renderDropdown()}
-        </tr>
-      </React.Fragment>
+      <tr
+        className="sketches-table__row"
+        key={sketch.id}
+        onClick={this.handleRowClick}
+      >
+        <th scope="row">{name}</th>
+        <td>
+          {mobile && 'Created: '}
+          {formatDateCell(sketch.createdAt, mobile)}
+        </td>
+        <td>
+          {mobile && 'Updated: '}
+          {formatDateCell(sketch.updatedAt, mobile)}
+        </td>
+        {this.renderDropdown()}
+      </tr>
     );
   }
 }
