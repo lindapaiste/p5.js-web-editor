@@ -141,6 +141,7 @@ export default function Preferences({ className }) {
               className="preference__minus-button"
               onClick={() => updateFontSize(fontSize - 2)}
               aria-label={t('Preferences.DecreaseFontARIA')}
+              title={t('Preferences.DecreaseFontARIA')}
               disabled={fontSize <= 8}
             >
               <MinusIcon focusable="false" aria-hidden="true" />
@@ -171,6 +172,7 @@ export default function Preferences({ className }) {
               className="preference__plus-button"
               onClick={() => updateFontSize(fontSize + 2)}
               aria-label={t('Preferences.IncreaseFontARIA')}
+              title={t('Preferences.IncreaseFontARIA')}
               disabled={fontSize >= 36}
             >
               <PlusIcon focusable="false" aria-hidden="true" />
