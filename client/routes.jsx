@@ -1,26 +1,6 @@
 import { useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useLocation, Outlet } from 'react-router-dom';
-
-import RedirectToUser from './components/createRedirectWithUsername';
-import App from './modules/App/App';
-import IDEView from './modules/IDE/pages/IDEView';
-import MobileIDEView from './modules/IDE/pages/MobileIDEView';
-import MobileSketchView from './modules/Mobile/MobileSketchView';
-import MobilePreferences from './modules/Mobile/MobilePreferences';
-import FullView from './modules/IDE/pages/FullView';
-import LoginView from './modules/User/pages/LoginView';
-import SignupView from './modules/User/pages/SignupView';
-import ResetPasswordView from './modules/User/pages/ResetPasswordView';
-import EmailVerificationView from './modules/User/pages/EmailVerificationView';
-import NewPasswordView from './modules/User/pages/NewPasswordView';
-import AccountView from './modules/User/pages/AccountView';
-import CollectionView from './modules/User/pages/CollectionView';
-import DashboardView from './modules/User/pages/DashboardView';
-import MobileDashboardView from './modules/Mobile/MobileDashboardView';
-// import PrivacyPolicy from './modules/IDE/pages/PrivacyPolicy';
-// import TermsOfUse from './modules/IDE/pages/TermsOfUse';
-import Legal from './modules/IDE/pages/Legal';
 import { getUser } from './modules/User/actions';
 import { stopSketch } from './modules/IDE/actions/ide';
 import {
@@ -32,6 +12,46 @@ import {
 } from './utils/auth';
 import { mobileFirst, responsiveForm } from './utils/responsive';
 import { ElementFromComponent } from './utils/router-compatibilty';
+
+const RedirectToUser = React.lazy(() =>
+  import('./components/createRedirectWithUsername')
+);
+const App = React.lazy(() => import('./modules/App/App'));
+const IDEView = React.lazy(() => import('./modules/IDE/pages/IDEView'));
+const MobileIDEView = React.lazy(() =>
+  import('./modules/IDE/pages/MobileIDEView')
+);
+const MobileSketchView = React.lazy(() =>
+  import('./modules/Mobile/MobileSketchView')
+);
+const MobilePreferences = React.lazy(() =>
+  import('./modules/Mobile/MobilePreferences')
+);
+const FullView = React.lazy(() => import('./modules/IDE/pages/FullView'));
+const LoginView = React.lazy(() => import('./modules/User/pages/LoginView'));
+const SignupView = React.lazy(() => import('./modules/User/pages/SignupView'));
+const ResetPasswordView = React.lazy(() =>
+  import('./modules/User/pages/ResetPasswordView')
+);
+const EmailVerificationView = React.lazy(() =>
+  import('./modules/User/pages/EmailVerificationView')
+);
+const NewPasswordView = React.lazy(() =>
+  import('./modules/User/pages/NewPasswordView')
+);
+const AccountView = React.lazy(() =>
+  import('./modules/User/pages/AccountView')
+);
+const CollectionView = React.lazy(() =>
+  import('./modules/User/pages/CollectionView')
+);
+const DashboardView = React.lazy(() =>
+  import('./modules/User/pages/DashboardView')
+);
+const MobileDashboardView = React.lazy(() =>
+  import('./modules/Mobile/MobileDashboardView')
+);
+const Legal = React.lazy(() => import('./modules/IDE/pages/Legal'));
 
 /**
  * Wrapper around App for handling legacy 'onChange' and 'onEnter' functionality,
