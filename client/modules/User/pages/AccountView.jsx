@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
-import { withRouter, browserHistory } from 'react-router';
 import { parse } from 'query-string';
 import { createApiKey, removeApiKey } from '../actions';
 import AccountForm from '../components/AccountForm';
@@ -14,6 +13,7 @@ import Nav from '../../../components/Nav';
 import ErrorModal from '../../IDE/components/ErrorModal';
 import Overlay from '../../App/components/Overlay';
 import Toast from '../../IDE/components/Toast';
+import { withRouter } from '../../../utils/router-compatibilty';
 
 function SocialLoginPanel() {
   const { t } = useTranslation();
@@ -44,7 +44,7 @@ function SocialLoginPanel() {
   );
 }
 
-function AccountView({ location }) {
+function AccountView({ location, navigate }) {
   const { t } = useTranslation();
 
   const queryParams = parse(location.search);
@@ -69,7 +69,7 @@ function AccountView({ location }) {
           title={t('ErrorModal.LinkTitle')}
           ariaLabel={t('ErrorModal.LinkTitle')}
           closeOverlay={() => {
-            browserHistory.push(location.pathname);
+            navigate(location.pathname);
           }}
         >
           <ErrorModal type="oauthError" service={errorType} />
@@ -122,7 +122,8 @@ AccountView.propTypes = {
   location: PropTypes.shape({
     search: PropTypes.string.isRequired,
     pathname: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  navigate: PropTypes.func.isRequired
 };
 
 export default withRouter(AccountView);
