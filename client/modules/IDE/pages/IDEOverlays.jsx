@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router';
+import { useLocation, useParams } from 'react-router-dom';
 import Overlay from '../../App/components/Overlay';
 import {
   closeKeyboardShortcutModal,
@@ -22,9 +21,11 @@ import { CollectionSearchbar } from '../components/Searchbar';
 import ShareModal from '../components/ShareModal';
 import UploadFileModal from '../components/UploadFileModal';
 
-function IDEOverlays({ location, params }) {
+export default function IDEOverlays() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const location = useLocation();
+  const params = useParams();
 
   const {
     modalIsVisible,
@@ -116,18 +117,3 @@ function IDEOverlays({ location, params }) {
     </>
   );
 }
-
-// TODO: use `useLocation` hook after updating react-router
-
-IDEOverlays.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string
-  }).isRequired,
-  params: PropTypes.shape({
-    project_id: PropTypes.string,
-    username: PropTypes.string,
-    reset_password_token: PropTypes.string
-  }).isRequired
-};
-
-export default withRouter(IDEOverlays);

@@ -27,6 +27,7 @@ export const {
   closeNewFolderModal,
   expandSidebar,
   collapseSidebar,
+  toggleSidebar,
   expandConsole,
   collapseConsole,
   toggleConsole,

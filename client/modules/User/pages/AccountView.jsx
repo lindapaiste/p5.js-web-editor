@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import { parse } from 'query-string';
+import getConfig from '../../../utils/getConfig';
 import { createApiKey, removeApiKey } from '../actions';
 import AccountForm from '../components/AccountForm';
 import SocialAuthButton from '../components/SocialAuthButton';
@@ -13,7 +14,6 @@ import Nav from '../../../components/Nav';
 import ErrorModal from '../../IDE/components/ErrorModal';
 import Overlay from '../../App/components/Overlay';
 import Toast from '../../IDE/components/Toast';
-import { withRouter } from '../../../utils/router-compatibilty';
 
 function SocialLoginPanel() {
   const { t } = useTranslation();
@@ -44,13 +44,16 @@ function SocialLoginPanel() {
   );
 }
 
-function AccountView({ location, navigate }) {
+function AccountView() {
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const queryParams = parse(location.search);
   const showError = !!queryParams.error;
   const errorType = queryParams.error;
-  const accessTokensUIEnabled = window.process.env.UI_ACCESS_TOKEN_ENABLED;
+  const accessTokensUIEnabled = getConfig('UI_ACCESS_TOKEN_ENABLED');
 
   const apiKeys = useSelector((state) => state.user.apiKeys);
   const dispatch = useDispatch();
@@ -118,12 +121,4 @@ function AccountView({ location, navigate }) {
   );
 }
 
-AccountView.propTypes = {
-  location: PropTypes.shape({
-    search: PropTypes.string.isRequired,
-    pathname: PropTypes.string.isRequired
-  }).isRequired,
-  navigate: PropTypes.func.isRequired
-};
-
-export default withRouter(AccountView);
+export default AccountView;

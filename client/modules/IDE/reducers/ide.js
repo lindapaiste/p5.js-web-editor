@@ -55,6 +55,9 @@ const ideSlice = createSlice({
     expandSidebar: (state) => {
       state.sidebarIsExpanded = true;
     },
+    toggleSidebar: (state) => {
+      state.sidebarIsExpanded = !state.sidebarIsExpanded;
+    },
     collapseConsole: (state) => {
       state.consoleIsExpanded = false;
     },

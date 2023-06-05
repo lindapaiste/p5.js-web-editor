@@ -2,32 +2,22 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFileContent } from '../actions/files';
 import {
-  collapseConsole,
-  collapseSidebar,
-  expandConsole,
-  expandSidebar,
   showErrorModal,
   startSketch,
-  stopSketch
+  stopSketch,
+  toggleConsole,
+  toggleSidebar
 } from '../actions/ide';
 import { setAllAccessibleOutput } from '../actions/preferences';
 import { cloneProject, saveProject } from '../actions/project';
 import useKeyDownHandlers from '../hooks/useKeyDownHandlers';
-import {
-  getAuthenticated,
-  getIsUserOwner,
-  getSketchOwner
-} from '../selectors/users';
+import { getAuthenticated, selectCanEditSketch } from '../selectors/users';
 
 export const useIDEKeyHandlers = ({ getContent }) => {
   const dispatch = useDispatch();
 
-  const sidebarIsExpanded = useSelector((state) => state.ide.sidebarIsExpanded);
-  const consoleIsExpanded = useSelector((state) => state.ide.consoleIsExpanded);
-
-  const isUserOwner = useSelector(getIsUserOwner);
   const isAuthenticated = useSelector(getAuthenticated);
-  const sketchOwner = useSelector(getSketchOwner);
+  const canEdit = useSelector(selectCanEditSketch);
 
   const syncFileContent = () => {
     const file = getContent();
@@ -38,12 +28,12 @@ export const useIDEKeyHandlers = ({ getContent }) => {
     'ctrl-s': (e) => {
       e.preventDefault();
       e.stopPropagation();
-      if (isUserOwner || (isAuthenticated && !sketchOwner)) {
-        dispatch(saveProject(getContent()));
-      } else if (isAuthenticated) {
-        dispatch(cloneProject());
-      } else {
+      if (!isAuthenticated) {
         dispatch(showErrorModal('forceAuthentication'));
+      } else if (canEdit) {
+        dispatch(saveProject(getContent()));
+      } else {
+        dispatch(cloneProject());
       }
     },
     'ctrl-shift-enter': (e) => {
@@ -67,14 +57,11 @@ export const useIDEKeyHandlers = ({ getContent }) => {
     },
     'ctrl-b': (e) => {
       e.preventDefault();
-      dispatch(
-        // TODO: create actions 'toggleConsole', 'toggleSidebar', etc.
-        sidebarIsExpanded ? collapseSidebar() : expandSidebar()
-      );
+      dispatch(toggleSidebar());
     },
     'ctrl-`': (e) => {
       e.preventDefault();
-      dispatch(consoleIsExpanded ? collapseConsole() : expandConsole());
+      dispatch(toggleConsole());
     }
   });
 };
