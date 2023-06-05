@@ -3,6 +3,7 @@
   "version": "2.5.2",
   "description": "The web editor for p5.js.",
   "scripts": {
+    "i": "npm install",
     "clean": "rimraf dist",
     "start": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=development nodemon index.js",
     "start:prod": "cross-env NODE_ENV=production node index.js",
@@ -108,8 +109,8 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.2.12",
     "css-loader": "^5.2.7",
     "css-minimizer-webpack-plugin": "^3.4.1",
-    "eslint": "^7.31.0",
-    "eslint-config-airbnb": "^16.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",

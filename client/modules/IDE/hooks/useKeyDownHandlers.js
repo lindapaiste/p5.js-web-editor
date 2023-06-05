@@ -57,5 +57,5 @@ export const DocumentKeyDown = ({ handlers }) => {
   return null;
 };
 DocumentKeyDown.propTypes = {
-  handlers: PropTypes.objectOf(PropTypes.func)
+  handlers: PropTypes.objectOf(PropTypes.func).isRequired
 };
