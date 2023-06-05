@@ -199,7 +199,7 @@ const MobileDashboard = () => {
   );
 
   return (
-    <Screen fullscreen key={pathname}>
+    <Screen>
       <Header
         slim
         inverted
