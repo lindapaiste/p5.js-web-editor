@@ -94,12 +94,10 @@ class Nav extends React.PureComponent {
   handleNew() {
     const { unsavedChanges } = this.props;
     if (!unsavedChanges) {
-      this.props.showToast(1500);
-      this.props.setToastText('Toast.OpenedNewSketch');
+      this.props.showToast('Toast.OpenedNewSketch');
       this.props.newProject();
     } else if (window.confirm(this.props.t('Nav.WarningUnsavedChanges'))) {
-      this.props.showToast(1500);
-      this.props.setToastText('Toast.OpenedNewSketch');
+      this.props.showToast('Toast.OpenedNewSketch');
       this.props.newProject();
     }
     this.setDropdown('none');
@@ -161,8 +159,7 @@ class Nav extends React.PureComponent {
 
   handleLangSelection(event) {
     this.props.setLanguage(event.target.value);
-    this.props.showToast(1500);
-    this.props.setToastText('Toast.LangChange');
+    this.props.showToast('Toast.LangChange');
     this.setDropdown('none');
   }
 
@@ -945,7 +942,6 @@ class Nav extends React.PureComponent {
 Nav.propTypes = {
   newProject: PropTypes.func.isRequired,
   showToast: PropTypes.func.isRequired,
-  setToastText: PropTypes.func.isRequired,
   saveProject: PropTypes.func.isRequired,
   autosaveProject: PropTypes.func.isRequired,
   cloneProject: PropTypes.func.isRequired,

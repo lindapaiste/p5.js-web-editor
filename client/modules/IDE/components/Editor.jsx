@@ -55,7 +55,6 @@ import * as ProjectActions from '../actions/project';
 import * as EditorAccessibilityActions from '../actions/editorAccessibility';
 import * as PreferencesActions from '../actions/preferences';
 import * as UserActions from '../../User/actions';
-import * as ToastActions from '../actions/toast';
 import * as ConsoleActions from '../actions/console';
 
 import Timer from './Timer';
@@ -494,7 +493,6 @@ function mapStateToProps(state) {
     editorAccessibility: state.editorAccessibility,
     user: state.user,
     project: state.project,
-    toast: state.toast,
     consoleEvents: state.console,
 
     ...state.preferences,
@@ -515,7 +513,6 @@ function mapDispatchToProps(dispatch) {
       IDEActions,
       PreferencesActions,
       UserActions,
-      ToastActions,
       ConsoleActions
     ),
     dispatch
