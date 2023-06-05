@@ -57,6 +57,7 @@ import * as PreferencesActions from '../actions/preferences';
 import * as UserActions from '../../User/actions';
 import * as ConsoleActions from '../actions/console';
 
+import AssetPreview from './AssetPreview';
 import Timer from './Timer';
 import EditorAccessibility from './EditorAccessibility';
 import UnsavedChangesIndicator from './UnsavedChangesIndicator';
@@ -421,6 +422,9 @@ class Editor extends React.Component {
           }}
           className={editorHolderClass}
         />
+        {this.props.file.url ? (
+          <AssetPreview url={this.props.file.url} name={this.props.file.name} />
+        ) : null}
         <EditorAccessibility lintMessages={this.props.lintMessages} />
       </section>
     );
