@@ -367,6 +367,28 @@ describe('<Preferences />', () => {
       );
     });
 
+    it('autocompleteHinter toggle, starting at false', () => {
+      // render the component with autocompleteHinter prop set to false
+      act(() => {
+        subject();
+      });
+
+      // get ahold of the radio buttons for toggling autocompleteHinter
+      const autocompleteRadioFalse = screen.getByRole('radio', {
+        name: /autocomplete hinter off/i
+      });
+      const autocompleteRadioTrue = screen.getByRole('radio', {
+        name: /autocomplete hinter on/i
+      });
+
+      testToggle(
+        autocompleteRadioFalse,
+        autocompleteRadioTrue,
+        props.setAutocompleteHinter,
+        true
+      );
+    });
+
     describe('start autosave value at true', () => {
       it('autosave toggle, starting at true', () => {
         // render the component with autosave prop set to true
@@ -414,6 +436,34 @@ describe('<Preferences />', () => {
       });
     });
 
+    describe('start autocomplete hinter value at true', () => {
+      beforeAll(() => {
+        props.autocompleteHinter = true;
+      });
+
+      it('autocompleteHinter toggle, starting at true', () => {
+        // render the component with autocompleteHinter prop set to true
+        act(() => {
+          subject();
+        });
+
+        // get ahold of the radio buttons for toggling autocompleteHinter
+        const autocompleteRadioFalse = screen.getByRole('radio', {
+          name: /autocomplete hinter off/i
+        });
+        const autocompleteRadioTrue = screen.getByRole('radio', {
+          name: /autocomplete hinter on/i
+        });
+
+        testToggle(
+          autocompleteRadioTrue,
+          autocompleteRadioFalse,
+          props.setAutocompleteHinter,
+          false
+        );
+      });
+    });
+
     describe('start linewrap at false', () => {
       it('linewrap toggle, starting at false', () => {
         // render the component with linewrap prop set to false
@@ -421,7 +471,7 @@ describe('<Preferences />', () => {
           subject({ linewrap: false });
         });
 
-        // get ahold of the radio buttons for toggling autocloseBracketsQuotes
+        // get ahold of the radio buttons for toggling linewrap
         const linewrapRadioFalse = screen.getByRole('radio', {
           name: /linewrap off/i
         });
@@ -445,7 +495,7 @@ describe('<Preferences />', () => {
           subject({ linewrap: true });
         });
 
-        // get ahold of the radio buttons for toggling autocloseBracketsQuotes
+        // get ahold of the radio buttons for toggling linewrap
         const linewrapRadioFalse = screen.getByRole('radio', {
           name: /linewrap off/i
         });
