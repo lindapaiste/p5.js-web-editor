@@ -8,7 +8,7 @@ import prettyBytes from 'pretty-bytes';
 import { withTranslation } from 'react-i18next';
 
 import Loader from '../../App/components/loader';
-import * as AssetActions from '../actions/assets';
+import * as AssetActions from './actions';
 import DownFilledTriangleIcon from '../../../images/down-filled-triangle.svg';
 
 class AssetListRowBase extends React.Component {

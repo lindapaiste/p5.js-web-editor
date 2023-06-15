@@ -6,8 +6,8 @@ import { withTranslation } from 'react-i18next';
 import Nav from '../../../components/Nav';
 import RootPage from '../../../components/RootPage';
 
-import CollectionCreate from '../components/CollectionCreate';
-import Collection from '../components/Collection';
+import CollectionCreate from '../collections/CollectionCreate';
+import Collection from '../collections/Collection';
 
 class CollectionView extends React.Component {
   static defaultProps = {

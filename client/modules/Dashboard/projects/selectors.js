@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import differenceInMilliseconds from 'date-fns/differenceInMilliseconds';
 import orderBy from 'lodash/orderBy';
-import { DIRECTION } from '../actions/sorting';
+import { DIRECTION } from '../common/sorting/actions';
 
 const getSketches = (state) => state.sketches;
 const getField = (state) => state.sorting.field;

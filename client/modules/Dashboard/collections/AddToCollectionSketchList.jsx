@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
 // import find from 'lodash/find';
-import * as ProjectsActions from '../actions/projects';
-import * as CollectionsActions from '../actions/collections';
-import * as ToastActions from '../actions/toast';
-import * as SortingActions from '../actions/sorting';
-import getSortedSketches from '../selectors/projects';
+import * as ProjectsActions from '../projects/actions';
+import * as CollectionsActions from './actions';
+import * as ToastActions from '../../IDE/actions/toast';
+import * as SortingActions from '../common/sorting/actions';
+import getSortedSketches from '../projects/selectors';
 import Loader from '../../App/components/loader';
 import QuickAddList from './QuickAddList';
 

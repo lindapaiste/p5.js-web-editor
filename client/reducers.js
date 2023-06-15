@@ -5,14 +5,14 @@ import preferences from './modules/IDE/reducers/preferences';
 import project from './modules/IDE/reducers/project';
 import editorAccessibility from './modules/IDE/reducers/editorAccessibility';
 import user from './modules/User/reducers';
-import sketches from './modules/IDE/reducers/projects';
+import sketches from './modules/Dashboard/projects/reducer';
 import toast from './modules/IDE/reducers/toast';
 import console from './modules/IDE/reducers/console';
-import assets from './modules/IDE/reducers/assets';
-import search from './modules/IDE/reducers/search';
-import sorting from './modules/IDE/reducers/sorting';
+import assets from './modules/Dashboard/assets/reducer';
+import search from './modules/Dashboard/common/search/reducer';
+import sorting from './modules/Dashboard/common/sorting/reducer';
 import loading from './modules/IDE/reducers/loading';
-import collections from './modules/IDE/reducers/collections';
+import collections from './modules/Dashboard/collections/reducer';
 
 const rootReducer = combineReducers({
   ide,

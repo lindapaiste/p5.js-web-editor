@@ -1,5 +1,5 @@
-import * as ActionTypes from '../../../constants';
-import { DIRECTION } from '../actions/sorting';
+import * as ActionTypes from '../../../../constants';
+import { DIRECTION } from './actions';
 
 const initialState = {
   field: 'createdAt',

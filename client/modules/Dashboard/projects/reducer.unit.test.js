@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 
-import * as ProjectActions from './projects';
+import * as ProjectActions from './actions';
 import * as ActionTypes from '../../../constants';
 import {
   initialTestState,

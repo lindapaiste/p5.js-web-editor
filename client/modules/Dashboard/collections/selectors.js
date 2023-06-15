@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import differenceInMilliseconds from 'date-fns/differenceInMilliseconds';
 import find from 'lodash/find';
 import orderBy from 'lodash/orderBy';
-import { DIRECTION } from '../actions/sorting';
+import { DIRECTION } from '../common/sorting/actions';
 
 const getCollections = (state) => state.collections;
 const getField = (state) => state.sorting.field;

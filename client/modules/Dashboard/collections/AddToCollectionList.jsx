@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
 
-import * as ProjectActions from '../actions/project';
-import * as ProjectsActions from '../actions/projects';
-import * as CollectionsActions from '../actions/collections';
-import * as ToastActions from '../actions/toast';
-import * as SortingActions from '../actions/sorting';
-import getSortedCollections from '../selectors/collections';
+import * as ProjectActions from '../../IDE/actions/project';
+import * as ProjectsActions from '../projects/actions';
+import * as CollectionsActions from './actions';
+import * as ToastActions from '../../IDE/actions/toast';
+import * as SortingActions from '../common/sorting/actions';
+import getSortedCollections from './selectors';
 import Loader from '../../App/components/loader';
 import QuickAddList from './QuickAddList';
 

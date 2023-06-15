@@ -7,21 +7,21 @@ import { withTranslation } from 'react-i18next';
 import Button from '../../../common/Button';
 import Nav from '../../../components/Nav';
 import Overlay from '../../App/components/Overlay';
-import AssetList from '../../IDE/components/AssetList';
-import AssetSize from '../../IDE/components/AssetSize';
-import CollectionList from '../../IDE/components/CollectionList';
-import SketchList from '../../IDE/components/SketchList';
+import AssetList from '../assets/AssetList';
+import AssetSize from '../assets/AssetSize';
+import CollectionList from '../collections/CollectionList';
+import SketchList from '../projects/SketchList';
 import RootPage from '../../../components/RootPage';
 import * as ProjectActions from '../../IDE/actions/project';
 import {
   CollectionSearchbar,
   SketchSearchbar
-} from '../../IDE/components/Searchbar';
+} from '../common/search/Searchbar';
 
-import CollectionCreate from '../components/CollectionCreate';
+import CollectionCreate from '../collections/CollectionCreate';
 import DashboardTabSwitcherPublic, {
   TabKey
-} from '../components/DashboardTabSwitcher';
+} from '../common/DashboardTabSwitcher';
 
 class DashboardView extends React.Component {
   static defaultProps = {

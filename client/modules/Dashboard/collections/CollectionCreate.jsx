@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { generateCollectionName } from '../../../utils/generateRandomName';
 import Button from '../../../common/Button';
-import { createCollection } from '../../IDE/actions/collections';
+import { createCollection } from './actions';
 
 const CollectionCreate = () => {
   const generatedCollectionName = useMemo(() => generateCollectionName(), []);

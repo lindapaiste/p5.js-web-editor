@@ -3,7 +3,7 @@ import React from 'react';
 import { throttle } from 'lodash';
 import { withTranslation } from 'react-i18next';
 import i18next from 'i18next';
-import SearchIcon from '../../../../images/magnifyingglass.svg';
+import SearchIcon from '../../../../../images/magnifyingglass.svg';
 
 class Searchbar extends React.Component {
   constructor(props) {

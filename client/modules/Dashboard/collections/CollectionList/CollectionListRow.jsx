@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { withTranslation } from 'react-i18next';
-import * as ProjectActions from '../../actions/project';
-import * as CollectionsActions from '../../actions/collections';
-import * as IdeActions from '../../actions/ide';
-import * as ToastActions from '../../actions/toast';
+import * as ProjectActions from '../../../IDE/actions/project';
+import * as CollectionsActions from '../actions';
+import * as IdeActions from '../../../IDE/actions/ide';
+import * as ToastActions from '../../../IDE/actions/toast';
 import dates from '../../../../utils/formatDate';
 
 import DownFilledTriangleIcon from '../../../../images/down-filled-triangle.svg';

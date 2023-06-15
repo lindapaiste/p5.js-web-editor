@@ -1,8 +1,8 @@
 import { browserHistory } from 'react-router';
 import apiClient from '../../../utils/apiClient';
 import * as ActionTypes from '../../../constants';
-import { startLoader, stopLoader } from './loader';
-import { setToastText, showToast } from './toast';
+import { startLoader, stopLoader } from '../../IDE/actions/loader';
+import { setToastText, showToast } from '../../IDE/actions/toast';
 
 const TOAST_DISPLAY_TIME_MS = 1500;
 

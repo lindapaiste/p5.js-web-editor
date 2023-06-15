@@ -30,9 +30,9 @@ import * as ConsoleActions from '../actions/console';
 import { getHTMLFile } from '../reducers/files';
 import Overlay from '../../App/components/Overlay';
 import About from '../components/About';
-import AddToCollectionList from '../components/AddToCollectionList';
+import AddToCollectionList from '../../Dashboard/collections/AddToCollectionList';
 import Feedback from '../components/Feedback';
-import { CollectionSearchbar } from '../components/Searchbar';
+import { CollectionSearchbar } from '../../Dashboard/common/search/Searchbar';
 import { getIsUserOwner } from '../selectors/users';
 import RootPage from '../../../components/RootPage';
 

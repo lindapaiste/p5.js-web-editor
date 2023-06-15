@@ -11,14 +11,14 @@ import IconButton from '../../components/mobile/IconButton';
 import { ExitIcon, MoreIcon } from '../../common/icons';
 import Footer from '../../components/mobile/Footer';
 import { remSize, prop } from '../../theme';
-import SketchList from '../IDE/components/SketchList';
-import CollectionList from '../IDE/components/CollectionList';
-import AssetList from '../IDE/components/AssetList';
+import SketchList from '../Dashboard/projects/SketchList';
+import CollectionList from '../Dashboard/collections/CollectionList';
+import AssetList from '../Dashboard/assets/AssetList';
 import Content from './MobileViewContent';
 import {
   SketchSearchbar,
   CollectionSearchbar
-} from '../IDE/components/Searchbar';
+} from '../Dashboard/common/search/Searchbar';
 import useAsModal from '../../components/useAsModal';
 import Dropdown from '../../components/Dropdown';
 import FooterTabSwitcher from '../../components/mobile/TabSwitcher';
