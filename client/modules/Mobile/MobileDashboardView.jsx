@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import Screen from '../../components/mobile/MobileScreen';
-import Header from '../../components/mobile/Header';
+import MobileHeader from '../../components/mobile/MobileHeader';
 import IconButton from '../../components/mobile/IconButton';
 import { ExitIcon, MoreIcon } from '../../common/icons';
 import Footer from '../../components/mobile/Footer';
@@ -199,7 +199,7 @@ const MobileDashboard = ({ params, location }) => {
 
   return (
     <Screen fullscreen key={pathname}>
-      <Header
+      <MobileHeader
         slim
         inverted
         title={
@@ -217,7 +217,7 @@ const MobileDashboard = ({ params, location }) => {
           <NavDropdown />
         </NavItem>
         <IconButton to="/" icon={ExitIcon} aria-label="Return to ide view" />
-      </Header>
+      </MobileHeader>
 
       <ContentWrapper
         slimheader

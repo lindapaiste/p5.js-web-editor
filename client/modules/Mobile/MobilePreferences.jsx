@@ -11,7 +11,7 @@ import * as IdeActions from '../IDE/actions/ide';
 
 import IconButton from '../../components/mobile/IconButton';
 import Screen from '../../components/mobile/MobileScreen';
-import Header from '../../components/mobile/Header';
+import MobileHeader from '../../components/mobile/MobileHeader';
 import PreferencePicker from '../../components/mobile/PreferencePicker';
 import { ExitIcon } from '../../common/icons';
 import { remSize, prop } from '../../theme';
@@ -127,9 +127,9 @@ const MobilePreferences = () => {
   return (
     <Screen fullscreen>
       <section>
-        <Header transparent title="Preferences">
-          <IconButton to="/" icon={ExitIcon} aria-label="Return to ide view" />
-        </Header>
+        <MobileHeader transparent title={t('MobileIDEView.Preferences')}>
+          <IconButton to="/" icon={ExitIcon} aria-label={t('Nav.BackEditor')} />
+        </MobileHeader>
         <section className="preferences">
           <Content>
             <SectionHeader>

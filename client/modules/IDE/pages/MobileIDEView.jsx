@@ -29,7 +29,7 @@ import {
 import UnsavedChangesDotIcon from '../../../images/unsaved-changes-dot.svg';
 
 import IconButton from '../../../components/mobile/IconButton';
-import Header from '../../../components/mobile/Header';
+import MobileHeader from '../../../components/mobile/MobileHeader';
 import Toast from '../components/Toast';
 import Screen from '../../../components/mobile/MobileScreen';
 import Footer from '../../../components/mobile/Footer';
@@ -359,7 +359,7 @@ const MobileIDEView = (props) => {
   return (
     <Screen fullscreen>
       <Explorer />
-      <Header
+      <MobileHeader
         title={withChangeDot(project.name, unsavedChanges)}
         subtitle={filename}
       >
@@ -381,7 +381,7 @@ const MobileIDEView = (props) => {
             aria-label="Run sketch"
           />
         </li>
-      </Header>
+      </MobileHeader>
       <Toast />
 
       <IDEWrapper>

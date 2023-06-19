@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import Header from '../../components/mobile/Header';
+import MobileHeader from '../../components/mobile/MobileHeader';
 import IconButton from '../../components/mobile/IconButton';
 import PreviewFrame from '../IDE/components/PreviewFrame';
 import Screen from '../../components/mobile/MobileScreen';
@@ -52,7 +52,7 @@ const MobileSketchView = () => {
 
   return (
     <Screen fullscreen>
-      <Header
+      <MobileHeader
         leftButton={
           <IconButton
             to="/"
