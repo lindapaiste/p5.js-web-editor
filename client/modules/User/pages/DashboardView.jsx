@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import { withTranslation } from 'react-i18next';
 
 import Button from '../../../common/Button';
-import Nav from '../../IDE/components/Header/Nav';
+import Nav from '../../IDE/components/Nav';
 import Overlay from '../../App/components/Overlay';
 import AssetList from '../../IDE/components/AssetList';
 import AssetSize from '../../IDE/components/AssetSize';

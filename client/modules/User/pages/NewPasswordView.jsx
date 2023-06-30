@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import NewPasswordForm from '../components/NewPasswordForm';
 import { validateResetPasswordToken } from '../actions';
-import Nav from '../../IDE/components/Header/Nav';
+import Nav from '../../IDE/components/Nav';
 import RootPage from '../../../components/RootPage';
 
 function NewPasswordView(props) {
