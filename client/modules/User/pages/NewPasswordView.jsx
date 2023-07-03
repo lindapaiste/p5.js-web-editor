@@ -6,8 +6,8 @@ import { Helmet } from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 import NewPasswordForm from '../components/NewPasswordForm';
 import { validateResetPasswordToken } from '../actions';
-import Nav from '../../IDE/components/Nav';
 import RootPage from '../../../components/RootPage';
+import NavV2 from '../../IDE/components/Header/NavV2';
 
 function NewPasswordView(props) {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ function NewPasswordView(props) {
   });
   return (
     <RootPage>
-      <Nav layout="dashboard" />
+      <NavV2 layout="dashboard" />
       <div className={newPasswordClass}>
         <Helmet>
           <title>{t('NewPasswordView.Title')}</title>
