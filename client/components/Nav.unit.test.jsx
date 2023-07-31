@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, reduxRender } from '../../../test-utils';
+import { render, reduxRender } from '../test-utils';
 
-import Nav, { NavComponent } from './Nav';
+import Nav, { NavComponent } from '../modules/IDE/components/Header/Nav';
 
 // jest.mock('../i18n');
 

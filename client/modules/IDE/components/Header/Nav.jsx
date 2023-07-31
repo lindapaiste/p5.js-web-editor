@@ -126,8 +126,12 @@ const ProjectMenu = (props) => {
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
-  const { newSketch, saveSketch, downloadSketch, shareSketch } =
-    useSketchActions();
+  const {
+    newSketch,
+    saveSketch,
+    downloadSketch,
+    shareSketch
+  } = useSketchActions();
 
   const replaceCommand =
     metaKey === 'Ctrl' ? `${metaKeyName}+H` : `${metaKeyName}+⌥+F`;

@@ -2,7 +2,7 @@ import React from 'react';
 import lodash from 'lodash';
 
 import { fireEvent, render, screen, waitFor } from '../../../test-utils';
-import { ToolbarComponent } from './Toolbar';
+import { ToolbarComponent } from './Header/Toolbar';
 
 const renderComponent = (extraProps = {}) => {
   const props = lodash.merge(
