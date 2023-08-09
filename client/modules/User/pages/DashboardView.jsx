@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { withTranslation } from 'react-i18next';
+import styled from 'styled-components';
 
 import browserHistory from '../../../browserHistory';
 import Button from '../../../common/Button';
@@ -17,11 +19,38 @@ import {
   CollectionSearchbar,
   SketchSearchbar
 } from '../../IDE/components/Searchbar';
+import { ContentWrapper } from '../../Mobile/MobileDashboardView';
 
 import CollectionCreate from '../components/CollectionCreate';
 import DashboardTabSwitcherPublic, {
   TabKey
 } from '../components/DashboardTabSwitcher';
+
+const MobileWrapper = styled(ContentWrapper)`
+  margin-top: 0;
+`;
+
+const ResponsiveWrapper = ({ children, noheader = false, fieldcount }) => {
+  const isDesktop = useMediaQuery({ minWidth: 770 });
+
+  return isDesktop ? (
+    <div className="dashboard-content">{children}</div>
+  ) : (
+    <MobileWrapper noheader={noheader} fieldcount={fieldcount}>
+      {children}
+    </MobileWrapper>
+  );
+};
+
+ResponsiveWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+  fieldcount: PropTypes.number.isRequired,
+  noheader: PropTypes.bool
+};
+
+ResponsiveWrapper.defaultProps = {
+  noheader: false
+};
 
 class DashboardView extends React.Component {
   static defaultProps = {
@@ -114,12 +143,24 @@ class DashboardView extends React.Component {
   renderContent(tabKey, username) {
     switch (tabKey) {
       case TabKey.assets:
-        return <AssetList key={username} username={username} />;
+        return (
+          <ResponsiveWrapper fieldcount={3}>
+            <AssetList key={username} username={username} />
+          </ResponsiveWrapper>
+        );
       case TabKey.collections:
-        return <CollectionList key={username} username={username} />;
+        return (
+          <ResponsiveWrapper fieldcount={4}>
+            <CollectionList key={username} username={username} />
+          </ResponsiveWrapper>
+        );
       case TabKey.sketches:
       default:
-        return <SketchList key={username} username={username} />;
+        return (
+          <ResponsiveWrapper fieldcount={3}>
+            <SketchList key={username} username={username} />
+          </ResponsiveWrapper>
+        );
     }
   }
 
@@ -150,9 +191,7 @@ class DashboardView extends React.Component {
             </div>
           </div>
 
-          <div className="dashboard-content">
-            {this.renderContent(currentTab, username)}
-          </div>
+          {this.renderContent(currentTab, username)}
         </main>
         {this.state.collectionCreateVisible && (
           <Overlay

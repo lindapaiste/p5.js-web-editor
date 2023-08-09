@@ -26,7 +26,7 @@ import FooterTab from '../../components/mobile/Tab';
 const EXAMPLE_USERNAME = 'p5';
 
 // @ghalestrilo 08/13/2020: I'm sorry
-const ContentWrapper = styled(Content)`
+export const ContentWrapper = styled(Content)`
   table {
     table-layout: fixed;
     margin-bottom: ${remSize(120)};
